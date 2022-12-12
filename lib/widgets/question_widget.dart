@@ -63,7 +63,7 @@ class _QuestionViewState extends State<QuestionView> {
                 padding: EdgeInsets.symmetric(horizontal: size.width * .05),
                 //Question
                 child: Text(
-                  widget.qu.question,
+                  widget.qu.question!,
                   style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
@@ -76,7 +76,7 @@ class _QuestionViewState extends State<QuestionView> {
           //options section
           Expanded(
             child: ListView.separated(
-              itemCount: widget.qu.options.length,
+              itemCount: widget.qu.answers!.length,
               separatorBuilder: (context, index) => SizedBox(
                 height: size.height * .01,
               ),
@@ -95,7 +95,7 @@ class _QuestionViewState extends State<QuestionView> {
                       ),
                       //options
                       child: Center(
-                        child: Text(widget.qu.options[index],
+                        child: Text(widget.qu.answers![index],
                             style: const TextStyle(color: Colors.white,fontSize: 18)),
                       ),
                     ),
@@ -112,7 +112,7 @@ class _QuestionViewState extends State<QuestionView> {
   //function that trigger when a option is select
   optionfn(int index) async {
     if (isClickable == true) {
-      if (widget.qu.correctans == index) {
+      if (widget.qu.correctAnswer == index) {
         // print('correct');
         clr = Colors.green;
         Constants.ansCount++;
